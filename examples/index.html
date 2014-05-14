@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mindy modal example page</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+    <link href='../dist/css/1.0.0.all.css' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../dist/js/1.0.0.all.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', 'a.mmodal', function (e) {
+                e.preventDefault();
+                $(this).mmodal(this.dataset);
+                return false;
+            });
+        });
+    </script>
+    <style type="text/css">
+        #mmodal-example-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<section id="wrapper">
+    <a href="#mmodal-example" class="mmodal button" data-width="750">Open</a>
+    <section id="mmodal-example-container">
+        <section id="mmodal-example">
+            <h1>Hello world</h1>
+            Вообще-то, вчера было три встречи с избирателями.
+            <br>
+            У метро "Улица Подбельского", у метро "Преображенская площадь" и у метро "Сокольники".
+            <br>
+
+            <form action="">
+                <p><input type="text" placeholder="Text placeholder..."/></p>
+                <p><input type="text" placeholder="Text placeholder..."/></p>
+                <p><input type="text" placeholder="Text placeholder..."/></p>
+                <p><input type="text" placeholder="Text placeholder..."/></p>
+                <p><input type="text" placeholder="Text placeholder..."/></p>
+                <p>&nbsp;</p>
+                <p><input type="submit" value="Save"/></p>
+            </form>
+            <br>
+            В Сокольниках решили
+            провести открытую встречу, то есть, обычно мы не сильно афишируем мероприятия, чтобы на них было
+            только местные жители и можно было спокойно поговорить о местных проблемах.
+            <br>
+            <br>
+            Здесь же мы сообщили в соцсетях за сутки, причем без особого фанатизма: я сам ни в жж, ни в твиттере анонсов не
+            давал.<br>Нам самим было интересно проверить, сколько придет народа.
+            <br>
+            <br>
+            Пришло несколько тысяч
+            человек, за что всем большое спасибо.
+            <br>
+            <a href="http://imgur.com/o3NGDkM">
+                <img height="665.5555555555555" src="http://i.imgur.com/o3NGDkM.jpg" width="1000">
+            </a>
+            <br>
+                <img height="665.5555555555555" src="http://i.imgur.com/lTHNMwi.jpg" width="1000"></a>
+            <br>
+            <br>
+            Я рассказал о том, как прошли
+            предыдущие встречи.
+            <br>
+            <br>
+            <br>
+                <img src="http://i.imgur.com/hQeHuS8.jpg"></a>
+            <br>
+                <img src="http://i.imgur.com/BUZHN34.jpg"></a>
+            <br>
+            <br>
+            Рассказал о законопроектах, которые мы подготовили.
+            <br>
+            <br>
+            Отвечал на вопросы. Здесь были сомнения: вроде
+            "вопрос-ответ" для таких встреч - не формат.<br>Но мы решили не отступать от важного принципа
+            кампании: любой избиратель должен иметь возможность прийти на встречу и задать интересующий его
+            вопрос.<br>Вдруг от ответа на этот вопрос зависит его выбор?<br><br>В общем, встреча с избирателями
+            в Сокольниках прошла успешно, но, конечно, не получила бы такого резонанса, какой у неё был, если бы
+            не наши маленькие помощники из полиции и московской мэрии.<br>У них как обычно: "Собрался народ на
+            улице? Не пущать! Протоколы оформлять!"<br><br>Полицейский постоянно пытались вырубить звук на
+            сцене. Совершали броски (человек по 20) к генератору, пытались перерезать провод (надо же
+            додуматься, убить ведь могло) и делали прочие смешные штуки.<br><br>
+        </section>
+    </section>
+</section>
+</body>
+</html>
