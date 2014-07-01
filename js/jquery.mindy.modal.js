@@ -71,7 +71,7 @@
             if (this.$element.is("a")) {
                 this._prepareLink();
             } else {
-                this.start(this.$element);
+                this.start(this.$element.clone());
             }
         },
         getContainer: function () {
