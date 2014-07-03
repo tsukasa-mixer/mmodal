@@ -73,6 +73,7 @@
             } else {
                 this.start(this.$element.clone());
             }
+	    return this;
         },
         getContainer: function () {
             return this.$container == undefined ? this.renderContainer() : this.$container;
