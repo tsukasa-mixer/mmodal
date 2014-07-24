@@ -60,7 +60,8 @@
                 onBeforeOpen: $.noop,
                 onAfterOpen: $.noop,
                 onBeforeClose: $.noop,
-                onAfterClose: $.noop
+                onAfterClose: $.noop,
+                onSubmit: 'default'
             };
             this.locked = true;
 
@@ -73,7 +74,7 @@
             } else {
                 this.start(this.$element.clone());
             }
-	    return this;
+	        return this;
         },
         getContainer: function () {
             return this.$container == undefined ? this.renderContainer() : this.$container;
@@ -158,6 +159,13 @@
             }
         },
         _submitHandler: function (element) {
+            if (typeof this.options.onSubmit == 'function') {
+                this.options.onSubmit.call(this, element);
+            } else {
+                this._submitHandlerDefault.call(this, element);
+            }
+        },
+        _submitHandlerDefault: function (element) {
             var self = this,
                 content = '',
                 options = this.options,
