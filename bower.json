@@ -1,5 +1,11 @@
 {
     "name": "mmodal",
+    "version": "1.0.1",
+    "main": [
+        "scss/jquery.mmodal.scss",
+        "js/jquery.mindy.modal.js",
+        "jquery.mindy.mmodal.yii.js"
+    ],
     "dependencies": {
         "jquery": "*"
     }
