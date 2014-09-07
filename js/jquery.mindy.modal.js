@@ -230,7 +230,7 @@
             this.options.onBeforeClose();
 
             $('body').off('keyup').css({
-                'overflow': 'inherit',
+                'overflow': '',
                 'padding-right': ''
             });
 
