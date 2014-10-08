@@ -38,7 +38,8 @@
             container: 'mmodal-container',
             animation: 'animated',
             background: 'mmodal-modal-bg',
-            closeButton: 'mmodal-close'
+            closeButton: 'mmodal-close',
+            bodyClass: 'mmodal-opened'
         },
         init: function (element, options) {
             var defaultOptions = {
@@ -222,7 +223,7 @@
             $body.css({
                 'overflow': 'hidden',
                 'padding-right': $body.outerWidth() - before
-            });
+            }).addClass(this.options.bodyClass);
 
             this.options.onAfterOpen();
         },
@@ -232,7 +233,7 @@
             $('body').off('keyup').css({
                 'overflow': '',
                 'padding-right': ''
-            });
+            }).removeClass(this.options.bodyClass);
 
             this.$close.off('click');
             this.$bg.off('click');

@@ -1,6 +1,6 @@
 {
     "name": "mmodal",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": [
         "scss/jquery.mmodal.scss",
         "js/jquery.mindy.modal.js",
