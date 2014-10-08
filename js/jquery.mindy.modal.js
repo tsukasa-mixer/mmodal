@@ -75,7 +75,7 @@
             } else {
                 this.start(this.$element.clone());
             }
-	        return this;
+            return this;
         },
         getContainer: function () {
             return this.$container == undefined ? this.renderContainer() : this.$container;
@@ -223,7 +223,7 @@
             $body.css({
                 'overflow': 'hidden',
                 'padding-right': $body.outerWidth() - before
-            }).addClass(this.options.bodyClass);
+            }).addClass(this.classes.bodyClass);
 
             this.options.onAfterOpen();
         },
@@ -233,7 +233,7 @@
             $('body').off('keyup').css({
                 'overflow': '',
                 'padding-right': ''
-            }).removeClass(this.options.bodyClass);
+            }).removeClass(this.classes.bodyClass);
 
             this.$close.off('click');
             this.$bg.off('click');
