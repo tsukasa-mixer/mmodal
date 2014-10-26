@@ -183,6 +183,14 @@
                 type: "post",
                 data: $data,
                 success: function (data, textStatus, jqXHR) {
+                    if (jqXHR.status == 278) {
+                        var location = jqXHR.getResponseHeader("Location");
+                        if (location) {
+                            window.location.href = jqXHR.getResponseHeader("Location");
+                        }
+                        return;
+                    }
+                    
                     try {
                         data = $.parseJSON(data);
                     } catch (e) {
