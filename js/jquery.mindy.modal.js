@@ -44,7 +44,8 @@
         init: function (element, options) {
             var defaultOptions = {
                 ajax: {
-                    type: "GET"
+                    type: "GET",
+                    dataType: null
                 },
                 animation: false,
                 animationdelay: 1.3,
@@ -140,17 +141,16 @@
                 this.start($html);
             } else {
                 $.ajax({
+                    dataType: this.options.ajax.dataType,
                     type: this.options.ajax.type,
                     url: href,
                     cache: false,
                     success: function (data, textStatus, jqXHR) {
-                        // TODO ugly, refactor it
-                        try {
-                            $html = $.parseJSON(data).content;
-                        } catch (e) {
+                        if (self.options.ajax.dataType  == 'json') {
+                            $html = data.content;
+                        } else {
                             $html = data;
                         }
-
                         self.start.call(self, $html);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -183,20 +183,15 @@
                 type: "post",
                 data: $data,
                 success: function (data, textStatus, jqXHR) {
-                    if (jqXHR.status == 278) {
-                        var location = jqXHR.getResponseHeader("Location");
-                        if (location) {
-                            window.location.href = jqXHR.getResponseHeader("Location");
-                        }
-                        return;
-                    }
-                    
                     try {
                         data = $.parseJSON(data);
                     } catch (e) {
                     }
 
                     options.onSuccess.call(this, data, textStatus, jqXHR);
+                    if (data.close){
+                        return self.close();
+                    }
                     if (data) {
                         content = data['content'] || data['title'] || data;
                         self.setContent(content);
