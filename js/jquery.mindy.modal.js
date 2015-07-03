@@ -283,22 +283,39 @@
                             self.close();
                             return false;
                         }
-                    })
-                    .on('mousewheel', function (e) {
-                        var $this = $(this);
-                        $this.scrollTop($this.scrollTop() - e.originalEvent.wheelDeltaY);
-                        return false;
-                    })
-                    .on('touchmove', function (e) {
-                        var $this = $(this),
-                            $window = $(window);
-
-                        if ($window.width() < 320) {
-                            $this.scrollTop($this.scrollTop() - e.originalEvent.wheelDeltaY);
-                            return false;
-                        }
                     });
             }
+
+            this.$bg
+                .on('mousewheel', function (e) {
+                    var $this = $(this);
+                    $this.scrollTop($this.scrollTop() - e.originalEvent.wheelDeltaY);
+                    return false;
+                })
+
+                .on("touchstart", function(e) {
+                    this.touches = {
+                        'startingY': e.originalEvent.touches[0].pageY,
+                        'startingX': e.originalEvent.touches[0].pageX,
+                    };
+                })
+
+
+                .on('touchmove', function (e) {
+                    var $this = $(this),
+                        $window = $(window);
+
+                    var deltaY = e.originalEvent.touches[0].pageY - this.touches.startingY;
+                    var deltaX = e.originalEvent.touches[0].pageX - this.touches.startingX;
+
+                    $this.scrollTop($this.scrollTop() - deltaY);
+                    $this.scrollLeft($this.scrollLeft() - deltaX);
+
+                    this.touches.startingY = e.originalEvent.touches[0].pageY;
+                    this.touches.startingX = e.originalEvent.touches[0].pageX;
+
+                    return false;
+                });
 
             if (options.closeonescape == true) {
                 $('body').on('keyup', function (e) {
