@@ -1,10 +1,21 @@
 {
     "name": "mmodal",
-    "version": "1.0.3",
+    "license": "(MIT OR LGPL-3.0)",
+    "moduleType": [ "globals" ],
     "main": [
         "scss/jquery.mmodal.scss",
         "js/jquery.mindy.modal.js"
     ],
+    "keywords": [ "modal", "modal-form", "jquery", "ajax", "jquery-plugin", "json", "json-form", "html-form", "form" ],
+    "authors": [
+        { "name": "Maksim Falaleev" },
+        { "name": "Maksim Korobitsyn" },
+        { "name": "Anton Okulov" }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tsukasa-mixer/mmodal.git"
+    },
     "dependencies": {
         "jquery": ">=1.7.2",
         "jquery-form": "*"
