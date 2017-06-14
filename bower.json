@@ -1,12 +1,12 @@
 {
     "name": "mmodal",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": [
         "scss/jquery.mmodal.scss",
-        "js/jquery.mindy.modal.js",
-        "jquery.mindy.mmodal.yii.js"
+        "js/jquery.mindy.modal.js"
     ],
     "dependencies": {
-        "jquery": "*"
+        "jquery": ">=1.7.2",
+        "jquery-form": "*"
     }
 }

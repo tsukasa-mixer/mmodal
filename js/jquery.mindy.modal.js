@@ -85,14 +85,22 @@
             var $content = this.$content;
 
             $content.html($html);
-            if ($content.find('form').length > 0) {
+            var $forms = $content.find('form');
+            if ($forms.length > 0) {
                 var self = this;
-                $content.find("[type='submit']").off("click").on("click", function (e) {
+                $forms = $forms.filter(function(index, el){
+                    if ($(el).data('ajax-send') == 'off') {
+                        return false;
+                    }
+                    return true;
+                });
+
+                $forms.find("[type='submit']").off("click").on("click", function (e) {
                     e.preventDefault();
                     self._submitHandler.call(self, this);
                     return false;
                 });
-                $content.find("form").off("submit").on("submit", function (e) {
+                $forms.find("form").off("submit").on("submit", function (e) {
                     e.preventDefault();
                     self._submitHandler.call(self, this);
                     return false;
