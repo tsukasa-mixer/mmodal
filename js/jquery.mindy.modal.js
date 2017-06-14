@@ -100,7 +100,7 @@
                     self._submitHandler.call(self, this);
                     return false;
                 });
-                $forms.find("form").off("submit").on("submit", function (e) {
+                $forms.off("submit").on("submit", function (e) {
                     e.preventDefault();
                     self._submitHandler.call(self, this);
                     return false;
