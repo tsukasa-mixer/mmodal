@@ -54,6 +54,8 @@
                 closeonclick: true,
                 closeonescape: true,
 
+                touchEvents: false,
+
                 autoclose: false,
                 autoclosedelay: 1450,
 
@@ -88,7 +90,7 @@
             var $forms = $content.find('form');
             if ($forms.length > 0) {
                 var self = this;
-                $forms = $forms.filter(function(index, el){
+                $forms = $forms.filter(function (index, el) {
                     if ($(el).data('ajax-send') == 'off') {
                         return false;
                     }
@@ -154,7 +156,7 @@
                     url: href,
                     cache: false,
                     success: function (data, textStatus, jqXHR) {
-                        if (self.options.ajax.dataType  == 'json') {
+                        if (self.options.ajax.dataType == 'json') {
                             $html = data.content;
                         } else {
                             $html = data;
@@ -197,7 +199,7 @@
                     }
 
                     options.onSuccess.call(this, data, textStatus, jqXHR);
-                    if (data.close){
+                    if (data.close) {
                         return self.close();
                     }
                     if (data) {
@@ -299,31 +301,35 @@
                     var $this = $(this);
                     $this.scrollTop($this.scrollTop() - e.originalEvent.wheelDeltaY);
                     return false;
-                })
-
-                .on("touchstart", function(e) {
-                    this.touches = {
-                        'startingY': e.originalEvent.touches[0].pageY,
-                        'startingX': e.originalEvent.touches[0].pageX,
-                    };
-                })
-
-
-                .on('touchmove', function (e) {
-                    var $this = $(this),
-                        $window = $(window);
-
-                    var deltaY = e.originalEvent.touches[0].pageY - this.touches.startingY;
-                    var deltaX = e.originalEvent.touches[0].pageX - this.touches.startingX;
-
-                    $this.scrollTop($this.scrollTop() - deltaY);
-                    $this.scrollLeft($this.scrollLeft() - deltaX);
-
-                    this.touches.startingY = e.originalEvent.touches[0].pageY;
-                    this.touches.startingX = e.originalEvent.touches[0].pageX;
-
-                    return false;
                 });
+
+            if (this.options.touchEvents) {
+                this.$bg
+                    .on("touchstart", function (e) {
+                        self.touches = {
+                            'startingY': e.originalEvent.touches[0].pageY,
+                            'startingX': e.originalEvent.touches[0].pageX,
+                        };
+                    })
+
+
+                    .on('touchmove', function (e) {
+                        var $this = $(this),
+                            $window = $(window);
+
+                        var deltaY = e.originalEvent.touches[0].pageY - self.touches.startingY;
+                        var deltaX = e.originalEvent.touches[0].pageX - self.touches.startingX;
+
+                        $this.scrollTop($this.scrollTop() - deltaY);
+                        $this.scrollLeft($this.scrollLeft() - deltaX);
+
+                        self.touches.startingY = e.originalEvent.touches[0].pageY;
+                        self.touches.startingX = e.originalEvent.touches[0].pageX;
+
+                        return false;
+                    });
+            }
+
 
             if (options.closeonescape == true) {
                 $('body').on('keyup', function (e) {
