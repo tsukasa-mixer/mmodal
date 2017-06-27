@@ -29,6 +29,8 @@
         $bg: undefined,
         $container: undefined,
 
+        params: {},
+
         inline: false,
         inlineIndex: undefined,
         $inlineParent: undefined,
@@ -78,8 +80,25 @@
             } else {
                 this.start(this.$element.clone());
             }
+
+            this.params['lineHeight'] = this.getLineHeight($('html'));
+            this.params['pageHeight'] = this.getPageHeight($('html'));
+
             return this;
         },
+        getLineHeight: function(elem) {
+            var $elem = $(elem),
+                $parent = $elem['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
+            if (!$parent.length) {
+                $parent = $('body');
+            }
+            return parseInt($parent.css('fontSize'), 10) || parseInt($elem.css('fontSize'), 10) || 16;
+        },
+
+        getPageHeight: function(elem) {
+            return $(elem).height();
+        },
+
         getContainer: function () {
             return this.$container == undefined ? this.renderContainer() : this.$container;
         },
@@ -299,7 +318,18 @@
             this.$bg
                 .on('mousewheel', function (e) {
                     var $this = $(this);
-                    $this.scrollTop($this.scrollTop() - e.originalEvent.wheelDeltaY);
+                    var deltaY = e.originalEvent.wheelDeltaY || e.originalEvent.deltaY;
+                    var mode = e.originalEvent.deltaMode;
+
+                    if (mode === 1) {
+                        deltaY *= self.params.lineHeight * -1;
+                    }
+                    else if (mode === 2) {
+                        deltaY *= self.params.pageHeight;
+                    }
+
+                    $this.scrollTop($this.scrollTop() - deltaY);
+
                     return false;
                 });
 
